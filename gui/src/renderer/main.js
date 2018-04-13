@@ -1,9 +1,9 @@
-import axios from 'axios'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import VueSuperagent from 'vue-superagent'
 
 Vue.use(Vuetify, { theme: {
   primary: '#000000',
@@ -15,7 +15,8 @@ Vue.use(Vuetify, { theme: {
   warning: '#000000'
 }})
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
-Vue.http = Vue.prototype.$http = axios
+Vue.use(VueSuperagent, {
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -29,7 +30,7 @@ new Vue({
 window.getSetting = function (){
     var o = {
         Type: 'Brook',
-        Address: 'local.txthinking.com:1080',
+        Address: '',
         Server: '',
         Password: '',
         TCPTimeout: 60,
@@ -37,7 +38,7 @@ window.getSetting = function (){
         UDPDeadline: 60,
         UDPSessionTime: 60,
     };
-    var s = localStorage.getItem('Setting');
+    var s = localStorage.getItem('brook/setting');
     if (s){
         o = JSON.parse(s);
     }

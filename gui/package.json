@@ -1,6 +1,6 @@
 {
   "name": "Brook",
-  "version": "20180227.0.0",
+  "version": "20180401.0.0",
   "author": "Cloud <cloud@txthinking.com>",
   "description": "Brook is a cross-platform(Linux/MacOS/Windows/Android/iOS) proxy software",
   "license": null,
@@ -52,10 +52,11 @@
     }
   },
   "dependencies": {
-    "axios": "^0.16.1",
+    "addr-to-ip-port": "^1.4.3",
     "vue": "^2.4.2",
     "vue-electron": "^1.0.6",
     "vue-router": "^2.5.3",
+    "vue-superagent": "^1.2.0",
     "vuetify": "1.0.0"
   },
   "devDependencies": {
@@ -73,10 +74,10 @@
     "css-loader": "^0.28.4",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron": "^1.7.5",
+    "electron": "^1.8.4",
+    "electron-builder": "^19.19.1",
     "electron-debug": "^1.4.0",
     "electron-devtools-installer": "^2.2.0",
-    "electron-builder": "^19.19.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
