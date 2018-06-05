@@ -6,7 +6,7 @@
                     <v-layout column>
                         <v-flex>
                             <v-select
-                                :items="types"
+                                :items="['Brook', 'Brook Stream', 'Shadowsocks', ]"
                                 v-model.trim="o.Type"
                                 label="Type"
                                 class="input-group--focused"
@@ -24,6 +24,10 @@
                                 label="Password"
                                 placeholder="Your server password"
                                 v-model="o.Password"
+                                :append-icon="passwordVisibility ? 'visibility' : 'visibility_off'"
+                                :append-icon-cb="() => (passwordVisibility = !passwordVisibility)"
+                                :type="passwordVisibility ? 'text' : 'password'"
+                                counter
                                 ></v-text-field>
                         </v-flex>
                         <v-flex>
@@ -43,7 +47,6 @@ export default {
     data: () => ({
         o: {
             Type: 'Brook',
-            Address: 'local.txthinking.com:1080',
             Server: '',
             Password: '',
             TCPTimeout: 60,
@@ -51,9 +54,9 @@ export default {
             UDPDeadline: 60,
             UDPSessionTime: 60,
         },
+        passwordVisibility: false,
         hey: false,
         girl: "",
-        types: ["Brook", "Brook Stream", "Shadowsocks", ],
     }),
 
     computed: {
@@ -68,23 +71,18 @@ export default {
 
     methods: {
         initialize () {
-            var s = localStorage.getItem('Setting');
+            var s = localStorage.getItem('brook/server');
             if (s){
                 this.o = JSON.parse(s);
             }
         },
         save () {
-            if(!/.+?\:\d+/.test(this.o.Address)){
-                this.girl = "Invalid Address";
-                this.hey = true;
-                return;
-            }
             if(!/.+?\:\d+/.test(this.o.Server)){
                 this.girl = "Invalid Server";
                 this.hey = true;
                 return;
             }
-            localStorage.setItem('Setting', JSON.stringify(this.o));
+            localStorage.setItem('brook/server', JSON.stringify(this.o));
             this.girl = "OK";
             this.hey = true;
         },

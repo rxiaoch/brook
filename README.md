@@ -8,10 +8,10 @@
 
 ---
 
-### New features (v20180227)
+### v20180601
 
-* Transparent proxy: $ brook tproxy. [#117](https://github.com/txthinking/brook/issues/117)
-* New MacOS/Windows GUI
+* Mode [wiki](https://github.com/txthinking/brook/wiki/Mode-in-Brook-GUI-client)
+* Thanks to [@popey](https://github.com/popey), who sent PR of snap package
 
 ---
 
@@ -19,12 +19,16 @@
 
 * [What is Brook](#what-is-brook)
 * [Download](#download)
-* [Server](#server)
-    * [Brook Server](#brook-server)
-    * [Shadowsocks Server](#shadowsocks-server)
-* [Client (CLI)](#client-cli)
-    * [Brook Client](#brook-client)
-    * [Shadowsocks Client](#shadowsocks-client)
+* [Packages](#packages)
+* [**Server**](#server)
+* [**Client (CLI)**](#client-cli)
+* [**Client (GUI)**](#client-gui)
+* [Tunnel](#tunnel)
+* [Tproxy](#tproxy)
+* [Relay](#relay)
+* [Socks5](#socks5)
+* [Socks5 to HTTP](#socks5-to-http)
+* [Shadowsocks](#shadowsocks)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -37,29 +41,43 @@ Brook's goal is to reduce the configuration steps. Keep it simple, stupid.
 
 | Download | Server/Client | OS | Arch | Remark |
 | --- | --- | --- | --- | --- |
-| [brook](https://github.com/txthinking/brook/releases/download/v20180227/brook) | Server & Client | Linux | amd64 | CLI |
-| [brook_linux_386](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_386) | Server & Client | Linux | 386 | CLI |
-| [brook_linux_arm64](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_arm64) | Server & Client | Linux | arm64 | CLI |
-| [brook_linux_arm5](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_arm5) | Server & Client | Linux | arm5 | CLI |
-| [brook_linux_arm6](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_arm6) | Server & Client | Linux | arm6 | CLI |
-| [brook_linux_arm7](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_arm7) | Server & Client | Linux | arm7 | CLI |
-| [brook_linux_mips](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_mips) | Server & Client | Linux | mips | CLI |
-| [brook_linux_mipsle](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_mipsle) | Server & Client | Linux | mipsle | CLI |
-| [brook_linux_mips64](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_mips64) | Server & Client | Linux | mips64 | CLI |
-| [brook_linux_mips64le](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_mips64le) | Server & Client | Linux | mips64le | CLI |
-| [brook_linux_ppc64](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_ppc64) | Server & Client | Linux | ppc64 | CLI |
-| [brook_linux_ppc64le](https://github.com/txthinking/brook/releases/download/v20180227/brook_linux_ppc64le) | Server & Client | Linux | ppc64le | CLI |
-| [brook_macos_amd64](https://github.com/txthinking/brook/releases/download/v20180227/brook_macos_amd64) | Server & Client | MacOS | amd64 | CLI |
-| [brook_windows_amd64.exe](https://github.com/txthinking/brook/releases/download/v20180227/brook_windows_amd64.exe) | Server & Client | Windows | amd64 | CLI |
-| [brook_windows_386.exe](https://github.com/txthinking/brook/releases/download/v20180227/brook_windows_386.exe) | Server & Client | Windows | 386 | CLI |
-| [Brook.dmg](https://github.com/txthinking/brook/releases/download/v20180227/Brook.dmg) | Client | MacOS | amd64 | GUI |
-| [Brook.Setup.exe](https://github.com/txthinking/brook/releases/download/v20180227/Brook.Setup.exe) | Client | Windows | amd64 | GUI |
+| [brook](https://github.com/txthinking/brook/releases/download/v20180601/brook) | Server & Client | Linux | amd64 | CLI |
+| [brook_linux_386](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_386) | Server & Client | Linux | 386 | CLI |
+| [brook_linux_arm64](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_arm64) | Server & Client | Linux | arm64 | CLI |
+| [brook_linux_arm5](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_arm5) | Server & Client | Linux | arm5 | CLI |
+| [brook_linux_arm6](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_arm6) | Server & Client | Linux | arm6 | CLI |
+| [brook_linux_arm7](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_arm7) | Server & Client | Linux | arm7 | CLI |
+| [brook_linux_mips](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_mips) | Server & Client | Linux | mips | CLI |
+| [brook_linux_mipsle](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_mipsle) | Server & Client | Linux | mipsle | CLI |
+| [brook_linux_mips64](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_mips64) | Server & Client | Linux | mips64 | CLI |
+| [brook_linux_mips64le](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_mips64le) | Server & Client | Linux | mips64le | CLI |
+| [brook_linux_ppc64](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_ppc64) | Server & Client | Linux | ppc64 | CLI |
+| [brook_linux_ppc64le](https://github.com/txthinking/brook/releases/download/v20180601/brook_linux_ppc64le) | Server & Client | Linux | ppc64le | CLI |
+| [brook_macos_amd64](https://github.com/txthinking/brook/releases/download/v20180601/brook_macos_amd64) | Server & Client | MacOS | amd64 | CLI |
+| [brook_windows_amd64.exe](https://github.com/txthinking/brook/releases/download/v20180601/brook_windows_amd64.exe) | Server & Client | Windows | amd64 | CLI |
+| [brook_windows_386.exe](https://github.com/txthinking/brook/releases/download/v20180601/brook_windows_386.exe) | Server & Client | Windows | 386 | CLI |
+| [Brook.dmg](https://github.com/txthinking/brook/releases/download/v20180601/Brook.dmg) | Client | MacOS | amd64 | GUI |
+| [Brook.Setup.exe](https://github.com/txthinking/brook/releases/download/v20180601/Brook.Setup.exe) | Client | Windows | amd64 | GUI |
 | [App Store](https://itunes.apple.com/us/app/brook-brook-shadowsocks-vpn-proxy/id1216002642) | Client | iOS | - | GUI |
-| [Google Play](https://play.google.com/store/apps/details?id=com.txthinking.brook) / [Brook.apk](https://github.com/txthinking/brook/releases/download/v20180227/Brook.apk) | Client | Android | - | GUI |
+| [Brook.apk](https://github.com/txthinking/brook/releases/download/v20180601/Brook.apk)(No Google Play) | Client | Android | - | GUI |
 
 **See [wiki](https://github.com/txthinking/brook/wiki) for more tutorials**
 
-## Server
+## Packages
+
+### ArchLinux
+
+```
+sudo pacman -S brook
+```
+
+### Snap
+
+```
+sudo snap install brook
+```
+
+## Brook
 
 ```
 NAME:
@@ -69,7 +87,7 @@ USAGE:
    brook [global options] command [command options] [arguments...]
 
 VERSION:
-   20180227
+   20180601
 
 AUTHOR:
    Cloud <cloud@txthinking.com>
@@ -101,7 +119,7 @@ GLOBAL OPTIONS:
    --version, -v             print the version
 ```
 
-#### Brook Server
+### Server
 
 ```
 # Run as a brook server
@@ -109,18 +127,61 @@ $ brook server -l :9999 -p password
 ```
 
 ```
-# Run as a brook stream server
-$ brook streamserver -l :9999 -p password
-```
-
-```
 # Run as multiple brook servers
-$ brook servers \
-        -l ":9999 password" \
-        -l ":8888 password"
+$ brook servers -l ":9999 password" -l ":8888 password"
 ```
 
-#### Shadowsocks Server
+> If you run a public/shared server, do not forget this parameter --tcpDeadline
+
+### Client (CLI)
+
+```
+# Run as brook client, start a socks5 proxy socks5://127.0.0.1:1080
+$ brook client -l 127.0.0.1:1080 -i 127.0.0.1 -s server_address:port -p password
+```
+
+```
+# Run as brook client, start a http(s) proxy http(s)://127.0.0.1:8080
+$ brook client -l 127.0.0.1:8080 -i 127.0.0.1 -s server_address:port -p password --http
+```
+
+### Client (GUI)
+
+See [wiki](https://github.com/txthinking/brook/wiki)
+
+#### Tunnel
+
+```
+# Run as tunnel 127.0.0.1:5 to 1.2.3.4:5
+$ brook tunnel -l 127.0.0.1:5 -t 1.2.3.4:5 -s server_address:port -p password
+```
+
+#### Tproxy
+
+See [wiki](https://github.com/txthinking/brook/wiki/How-to-run-transparent-proxy-on-Linux%3F)
+
+#### Relay
+
+```
+# Run as relay to 1.2.3.4:5
+$ brook relay -l :5 -r 1.2.3.4:5
+```
+
+#### Socks5
+
+```
+# Run as a raw socks5 server 1.2.3.4:1080
+$ brook socks5 -l :1080 -i 1.2.3.4
+```
+
+#### Socks5 to HTTP
+
+```
+# Convert socks5://127.0.0.1:1080 to http(s)://127.0.0.1:8080 proxy
+$ brook socks5tohttp -l 127.0.0.1:8080 -s 127.0.0.1:1080
+```
+
+#### Shadowsocks
 
 ```
 # Run as a shadowsocks server
@@ -129,57 +190,28 @@ $ brook ssserver -l :9999 -p password
 
 ```
 # Run as multiple shadowsocks servers
-$ brook ssservers \
-        -l ":9999 password" \
-        -l ":8888 password"
+$ brook ssservers -l ":9999 password" -l ":8888 password"
 ```
-
-Fixed method is aes-256-cfb
 
 > If you run a public/shared server, do not forget this parameter --tcpDeadline
 
-## Client (CLI)
-
-#### Brook Client
-
 ```
-# Run as brook client, start a socks5 proxy
-$ brook client -l 127.0.0.1:1080 -i 127.0.0.1 -s server_address:port -p password
-```
-
-```
-# Run as brook client, start a http(s) proxy
-$ brook client -l 127.0.0.1:1080 -i 127.0.0.1 -s server_address:port -p password --http
-```
-
-```
-# Run as brook stream client, start a socks5 proxy
-$ brook streamclient -l 127.0.0.1:1080 -i 127.0.0.1 -s server_address:port -p password
-```
-
-```
-# Run as brook stream client, start a http(s) proxy
-$ brook streamclient -l 127.0.0.1:1080 -i 127.0.0.1 -s server_address:port -p password --http
-```
-
-
-#### Shadowsocks Client
-
-```
-# Run as shadowsocks client, start a socks5 proxy
+# Run as shadowsocks client, start a socks5 proxy socks5://127.0.0.1:1080
 $ brook ssclient -l 127.0.0.1:1080 -i 127.0.0.1 -s server_address:port -p password
 ```
 
 ```
-# Run as shadowsocks client, start a http(s) proxy
-$ brook ssclient -l 127.0.0.1:1080 -i 127.0.0.1 -s server_address:port -p password --http
+# Run as shadowsocks client, start a http(s) proxy http(s)://127.0.0.1:8080
+$ brook ssclient -l 127.0.0.1:8080 -i 127.0.0.1 -s server_address:port -p password --http
 ```
+
+> Fixed method is aes-256-cfb
 
 **See [wiki](https://github.com/txthinking/brook/wiki) for more tutorials**
 
-#### Contributing
+## Contributing
 
-* Please create PR on `develop` branch
+Please read [CONTRIBUTING.md](https://github.com/txthinking/brook/blob/master/.github/CONTRIBUTING.md) first
 
 ## License
 
